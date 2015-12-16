@@ -1,4 +1,8 @@
 <div>
-  <%= "#{activity.owner.email} messed with a product with name: #{activity.trackable.name}" %>
+  <% if activity.trackable %>
+    <%= "#{activity.owner.email} messed with a product with name: #{activity.trackable.name}" %>
+  <% else %>
+    <%= "#{activity.owner.email} messed with a product which has since been deleted." %>
+  <% end %>
 </div>
 

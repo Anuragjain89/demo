@@ -1,0 +1,7 @@
+<div>
+  <% if activity.trackable %>
+    <%= "#{activity.owner.email} created a new article with name : #{activity.trackable.name}" %>
+  <% else %>
+    <%= "#{activity.owner.email} created an article which has since been deleted" %>
+  <% end %>
+</div>

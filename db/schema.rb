@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151216112644) do
+ActiveRecord::Schema.define(version: 20151216121145) do
+
+  create_table "acticles", force: :cascade do |t|
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "activities", force: :cascade do |t|
     t.integer  "trackable_id"

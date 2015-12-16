@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :acticles
   root 'products#index'
   resources :products
   resources :notifications, only: :index

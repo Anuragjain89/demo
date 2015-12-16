@@ -58,7 +58,8 @@ class ProductsController < ApplicationController
   def destroy
     @product.destroy
     respond_to do |format|
-      @product.create_activity :destroy, owner: current_user
+      # @product.create_activity :destroy, owner: current_user
+      # do not add activity here since the product is already destroyed.
       format.html { redirect_to products_url, notice: 'Product was successfully destroyed.' }
       format.json { head :no_content }
     end
