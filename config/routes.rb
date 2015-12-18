@@ -1,10 +1,19 @@
 Rails.application.routes.draw do
 
+  # get 'videos/upload_to_wistia'
+
   resources :acticles
   root 'products#index'
   resources :products
   resources :notifications, only: :index
   devise_for :users
+
+  resources :videos do
+    collection do
+      get 'upload_form'
+      post 'upload_to_wistia'
+    end
+  end
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

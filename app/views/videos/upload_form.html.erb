@@ -1,0 +1,21 @@
+<%= form_tag(upload_to_wistia_videos_path, method: "post", multipart: true) do %>
+  <%= file_field_tag :avatar %>
+  <%= submit_tag 'submit' %>
+<% end %>
+
+<script>
+  $(document).find('input[type="file"]').on('change', function(event) {
+    reader = new FileReader();
+    reader.onload = function(e) {
+      var videoElement = document.createElement('video');
+      videoElement.src = e.target.result;
+      var timer = setInterval(function () {
+        if (videoElement.readyState === 4){
+          alert("The duration is: " + videoElement.duration.toFixed(2) + " seconds and size is " + ( event.target.files[0].size / (1024 * 1024) ).toFixed(2) + 'MB');
+          clearInterval(timer);
+        }
+      }, 500)
+    };
+    reader.readAsDataURL(this.files[0]);
+  });
+</script>
