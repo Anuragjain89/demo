@@ -29,6 +29,10 @@ gem 'paperclip'
 gem 'wistia-uploader'
 gem 'multipart-post'
 gem 'streamio-ffmpeg'
+gem 'delayed_job_active_record'
+gem 'carrierwave'
+gem 'carrierwave_backgrounder'
+# gem 'carrierwave-video-thumbnailer'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

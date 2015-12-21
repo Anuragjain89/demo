@@ -10,5 +10,9 @@
   <%= @product.description %>
 </p>
 
+<p>
+  <%= video_tag @product.video_url.to_s %>
+</p>
+
 <%= link_to 'Edit', edit_product_path(@product) %> |
 <%= link_to 'Back', products_path %>
