@@ -40,7 +40,7 @@ class VideoUploader < CarrierWave::Uploader::Base
     original_video = FFMPEG::Movie.new(original_path)
     options = { resolution: original_video.resolution, watermark: "/sample_watermark.png", watermark_filter: { position: "RT", padding_x: 10, padding_y: 10 }}.to_json
     watermarked_video = Tempfile.new('watermarked_video')
-    cmd = "ffmpeg -i #{original_path} -i #{Rails.public_path.join('sample_watermark.png').to_s} -filter_complex 'overlay=10:10' -b:v #{original_video.video_bitrate}K -crf 18 -f #{File.extname(original_path).sub(/\A./, '')} #{watermarked_video.path} -y"
+    cmd = "ffmpeg -i #{original_path} -i #{Rails.public_path.join('sample_watermark.png').to_s} -filter_complex 'overlay=10:10' #{original_video.video_bitrate ? '-b:v ' + original_video.video_bitrate + 'K' : ''} -crf 18 -strict -2 -f #{File.extname(original_path).sub(/\A./, '')} #{watermarked_video.path} -y"
     puts cmd
     puts "original_path #{original_path}"
     puts "watermarked_video #{watermarked_video.path}"
