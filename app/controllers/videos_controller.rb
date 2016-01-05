@@ -10,7 +10,6 @@ class VideosController < ApplicationController
     puts "The duration of the uploaded video file is #{ movie.duration }"
     options = { resolution: movie.resolution, watermark: "/sample_watermark.png", watermark_filter: { position: "RT", padding_x: 10, padding_y: 10 }}.to_json
     watermarked_video = Tempfile.new('foo')
-    debugger
     cmd = "ffmpeg -i #{video_file.tempfile.path} -i #{Rails.public_path.join('sample_watermark.png').to_s} -filter_complex 'overlay=10:10' #{movie.video_bitrate ? '-b:v ' + movie.video_bitrate + 'K' : ''} -crf 18 -strict -2 -f #{File.extname(video_file.original_filename).sub(/\A./, '')} #{watermarked_video.path} -y"
     system( cmd )
     uri = URI('https://upload.wistia.com/')
